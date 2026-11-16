@@ -14,200 +14,200 @@ public class GetPetTests extends TestBase {
 
     GetPetRequest getPetRequest;
     GetPetStatusRequest getPetStatusRequest;
-    PostPetTests  criarPets = new PostPetTests();
-    String idDisp;
-    String idPend;
-    String idVend;
+    PostPetTests petCreationTests = new PostPetTests();
+    String availablePetId;
+    String pendingPetId;
+    String soldPetId;
 
     @Test
-    public void buscarPetDisponível(){
+    public void getAvailablePet(){
         SoftAssert softAssert = new SoftAssert();
 
-////////Criar Pet disponível
+////////Create an available pet
 
-        // Parâmetros
-        int statusCodeEsperado = HttpStatus.SC_OK;
+        // Parameters
+        int expectedStatusCode = HttpStatus.SC_OK;
 
-        // Fluxo
-        criarPets.inserirPetStatusDisponível();
-        int responseCodedisponivel = criarPets.code;
-        idDisp = criarPets.id;
+        // Flow
+        petCreationTests.createAvailablePet();
+        int availableResponseCode = petCreationTests.code;
+        availablePetId = petCreationTests.id;
 
 ////////
 
-        //Parâmetros
-        String petId = idDisp;
+        //Parameters
+        String petId = availablePetId;
         String categoryId = "10";
-        String categoryName = "felinos";
+        String categoryName = "cats";
         String name = "Figaro";
-        String photoUrl = "http://photodogatito.com/image123.png";
+        String photoUrl = "https://example.com/pet.png";
         String tagId = "10";
-        String tagName = "macho";
+        String tagName = "male";
         String status = "available";
 
-        //Fluxo
+        //Flow
         getPetRequest = new GetPetRequest(petId);
         Response response = getPetRequest.executeRequest();
 
-        //Asserções
-        Assert.assertEquals(responseCodedisponivel, statusCodeEsperado);
-        Assert.assertEquals(response.statusCode(), statusCodeEsperado);
-        softAssert.assertEquals(response.body().jsonPath().get("id").toString(), petId, "Validação id");
-        softAssert.assertEquals(response.body().jsonPath().get("category.id").toString(), categoryId, "Validação categoryId");
-        softAssert.assertEquals(response.body().jsonPath().get("category.name").toString(), categoryName, "Validação categoryName");
-        softAssert.assertEquals(response.body().jsonPath().get("name").toString(), name,  "Validação name");
-        softAssert.assertEquals(response.body().jsonPath().get("photoUrls[0]").toString(), photoUrl, "Validação photoUrl");
-        softAssert.assertEquals(response.body().jsonPath().get("tags[0].id").toString(), tagId, "Validação tagId");
-        softAssert.assertEquals(response.body().jsonPath().get("tags[0].name").toString(), tagName, "Validação tagName");
-        softAssert.assertEquals(response.body().jsonPath().get("status").toString(), status, "Validação status");
+        //Assertions
+        Assert.assertEquals(availableResponseCode, expectedStatusCode);
+        Assert.assertEquals(response.statusCode(), expectedStatusCode);
+        softAssert.assertEquals(response.body().jsonPath().get("id").toString(), petId, "Validate ID");
+        softAssert.assertEquals(response.body().jsonPath().get("category.id").toString(), categoryId, "Validate category ID");
+        softAssert.assertEquals(response.body().jsonPath().get("category.name").toString(), categoryName, "Validate category name");
+        softAssert.assertEquals(response.body().jsonPath().get("name").toString(), name, "Validate name");
+        softAssert.assertEquals(response.body().jsonPath().get("photoUrls[0]").toString(), photoUrl, "Validate photo URL");
+        softAssert.assertEquals(response.body().jsonPath().get("tags[0].id").toString(), tagId, "Validate tag ID");
+        softAssert.assertEquals(response.body().jsonPath().get("tags[0].name").toString(), tagName, "Validate tag name");
+        softAssert.assertEquals(response.body().jsonPath().get("status").toString(), status, "Validate status");
         softAssert.assertAll();
     }
 
     @Test
-    public void buscarPetPendente(){
+    public void getPendingPet(){
         SoftAssert softAssert = new SoftAssert();
 
-////////Criar pet pendente
+////////Create a pending pet
 
-        //Parâmetros
-        int statusCodeEsperado = HttpStatus.SC_OK;
+        //Parameters
+        int expectedStatusCode = HttpStatus.SC_OK;
 
-        // Fluxo
-        criarPets.inserirPetStatusPendente();
-        int responseCodePendente = criarPets.code;
-        idPend = criarPets.id;
+        // Flow
+        petCreationTests.createPendingPet();
+        int pendingResponseCode = petCreationTests.code;
+        pendingPetId = petCreationTests.id;
 
 
 ////////
 
-        //Parâmetros
-        String petId = idPend;
+        //Parameters
+        String petId = pendingPetId;
         String categoryId = "10";
-        String categoryName = "felinos";
+        String categoryName = "cats";
         String name = "Matilda";
-        String photoUrl = "http://photodogatito.com/image123.png";
+        String photoUrl = "https://example.com/pet.png";
         String tagId = "10";
-        String tagName = "fêmea";
+        String tagName = "female";
         String status = "pending";
 
-        //Fluxo
+        //Flow
         getPetRequest = new GetPetRequest(petId);
         Response response = getPetRequest.executeRequest();
 
-        //Asserções
-        Assert.assertEquals(responseCodePendente, statusCodeEsperado);
-        Assert.assertEquals(response.statusCode(), statusCodeEsperado);
-        softAssert.assertEquals(response.body().jsonPath().get("id").toString(), petId, "Validação id");
-        softAssert.assertEquals(response.body().jsonPath().get("category.id").toString(), categoryId, "Validação categoryId");
-        softAssert.assertEquals(response.body().jsonPath().get("category.name").toString(), categoryName, "Validação categoryName");
-        softAssert.assertEquals(response.body().jsonPath().get("name").toString(), name,  "Validação name");
-        softAssert.assertEquals(response.body().jsonPath().get("photoUrls[0]").toString(), photoUrl, "Validação photoUrl");
-        softAssert.assertEquals(response.body().jsonPath().get("tags[0].id").toString(), tagId, "Validação tagId");
-        softAssert.assertEquals(response.body().jsonPath().get("tags[0].name").toString(), tagName, "Validação tagName");
-        softAssert.assertEquals(response.body().jsonPath().get("status").toString(), status, "Validação status");
+        //Assertions
+        Assert.assertEquals(pendingResponseCode, expectedStatusCode);
+        Assert.assertEquals(response.statusCode(), expectedStatusCode);
+        softAssert.assertEquals(response.body().jsonPath().get("id").toString(), petId, "Validate ID");
+        softAssert.assertEquals(response.body().jsonPath().get("category.id").toString(), categoryId, "Validate category ID");
+        softAssert.assertEquals(response.body().jsonPath().get("category.name").toString(), categoryName, "Validate category name");
+        softAssert.assertEquals(response.body().jsonPath().get("name").toString(), name, "Validate name");
+        softAssert.assertEquals(response.body().jsonPath().get("photoUrls[0]").toString(), photoUrl, "Validate photo URL");
+        softAssert.assertEquals(response.body().jsonPath().get("tags[0].id").toString(), tagId, "Validate tag ID");
+        softAssert.assertEquals(response.body().jsonPath().get("tags[0].name").toString(), tagName, "Validate tag name");
+        softAssert.assertEquals(response.body().jsonPath().get("status").toString(), status, "Validate status");
         softAssert.assertAll();
     }
 
     @Test(priority = 1)
-    public void buscarPetVendido(){
+    public void getSoldPet(){
         SoftAssert softAssert = new SoftAssert();
 
-/////// Criar pet vendido
+/////// Create a sold pet
 
-        // Parâmetros
-        int statusCodeEsperado = HttpStatus.SC_OK;
+        // Parameters
+        int expectedStatusCode = HttpStatus.SC_OK;
 
-        // Fluxo
-        criarPets.inserirPetStatusVendido();
-        int responseCodeVendido = criarPets.code;
-        idVend = criarPets.id;
+        // Flow
+        petCreationTests.createSoldPet();
+        int soldResponseCode = petCreationTests.code;
+        soldPetId = petCreationTests.id;
 
 ////////
 
-        //Parâmetros
-        String petId = idVend;
+        //Parameters
+        String petId = soldPetId;
         String categoryId = "10";
-        String categoryName = "felinos";
-        String name = "Paçoca";
-        String photoUrl = "http://photodogatito.com/image123.png";
+        String categoryName = "cats";
+        String name = "Peanut";
+        String photoUrl = "https://example.com/pet.png";
         String tagId = "10";
-        String tagName = "macho";
+        String tagName = "male";
         String status = "sold";
 
-        //Fluxo
+        //Flow
         getPetRequest = new GetPetRequest(petId);
         Response response = getPetRequest.executeRequest();
 
-        //Asserções
-        Assert.assertEquals(responseCodeVendido, statusCodeEsperado);
-        Assert.assertEquals(response.statusCode(), statusCodeEsperado);
-        softAssert.assertEquals(response.body().jsonPath().get("id").toString(), petId, "Validação id");
-        softAssert.assertEquals(response.body().jsonPath().get("category.id").toString(), categoryId, "Validação categoryId");
-        softAssert.assertEquals(response.body().jsonPath().get("category.name").toString(), categoryName, "Validação categoryName");
-        softAssert.assertEquals(response.body().jsonPath().get("name").toString(), name,  "Validação name");
-        softAssert.assertEquals(response.body().jsonPath().get("photoUrls[0]").toString(), photoUrl, "Validação photoUrl");
-        softAssert.assertEquals(response.body().jsonPath().get("tags[0].id").toString(), tagId, "Validação tagId");
-        softAssert.assertEquals(response.body().jsonPath().get("tags[0].name").toString(), tagName, "Validação tagName");
-        softAssert.assertEquals(response.body().jsonPath().get("status").toString(), status, "Validação status");
+        //Assertions
+        Assert.assertEquals(soldResponseCode, expectedStatusCode);
+        Assert.assertEquals(response.statusCode(), expectedStatusCode);
+        softAssert.assertEquals(response.body().jsonPath().get("id").toString(), petId, "Validate ID");
+        softAssert.assertEquals(response.body().jsonPath().get("category.id").toString(), categoryId, "Validate category ID");
+        softAssert.assertEquals(response.body().jsonPath().get("category.name").toString(), categoryName, "Validate category name");
+        softAssert.assertEquals(response.body().jsonPath().get("name").toString(), name, "Validate name");
+        softAssert.assertEquals(response.body().jsonPath().get("photoUrls[0]").toString(), photoUrl, "Validate photo URL");
+        softAssert.assertEquals(response.body().jsonPath().get("tags[0].id").toString(), tagId, "Validate tag ID");
+        softAssert.assertEquals(response.body().jsonPath().get("tags[0].name").toString(), tagName, "Validate tag name");
+        softAssert.assertEquals(response.body().jsonPath().get("status").toString(), status, "Validate status");
         softAssert.assertAll();
     }
 
-////////Busca pets por Status
+////////Find pets by status
 
     @Test
-    public void buscarPetsStatusDisponíveis(){
+    public void findPetsByAvailableStatus(){
         SoftAssert softAssert = new SoftAssert();
 
-        //Parâmetros
-        int statusCodeEsperado = HttpStatus.SC_OK;
+        //Parameters
+        int expectedStatusCode = HttpStatus.SC_OK;
         String petStatus = "findByStatus?status=";
         String status = "available";
 
-        //Fluxo
+        //Flow
         getPetStatusRequest = new GetPetStatusRequest(petStatus+status);
         Response response = getPetStatusRequest.executeRequest();
 
-        //Asserções
-        Assert.assertEquals(response.statusCode(), statusCodeEsperado);
-        Assert.assertTrue(response.body().jsonPath().getString("status").contains(status),"Validação Status " +status);
+        //Assertions
+        Assert.assertEquals(response.statusCode(), expectedStatusCode);
+        Assert.assertTrue(response.body().jsonPath().getString("status").contains(status), "Validate status: " + status);
         softAssert.assertAll();
     }
 
     @Test
-    public void buscarPetsStatusPendentes(){
+    public void findPetsByPendingStatus(){
         SoftAssert softAssert = new SoftAssert();
 
-        //Parâmetros
-        int statusCodeEsperado = HttpStatus.SC_OK;
+        //Parameters
+        int expectedStatusCode = HttpStatus.SC_OK;
         String petStatus = "findByStatus?status=";
         String status = "pending";
 
-        //Fluxo
+        //Flow
         getPetStatusRequest = new GetPetStatusRequest(petStatus+status);
         Response response = getPetStatusRequest.executeRequest();
 
-        //Asserções
-        Assert.assertEquals(response.statusCode(), statusCodeEsperado);
-        Assert.assertTrue(response.body().jsonPath().getString("status").contains(status),"Validação Status" +status);
+        //Assertions
+        Assert.assertEquals(response.statusCode(), expectedStatusCode);
+        Assert.assertTrue(response.body().jsonPath().getString("status").contains(status), "Validate status: " + status);
         softAssert.assertAll();
     }
 
     @Test
-    public void buscarPetsStatusVendidos(){
+    public void findPetsBySoldStatus(){
         SoftAssert softAssert = new SoftAssert();
 
-        //Parâmetros
-        int statusCodeEsperado = HttpStatus.SC_OK;
+        //Parameters
+        int expectedStatusCode = HttpStatus.SC_OK;
         String petStatus = "findByStatus?status=";
         String status = "sold";
 
-        //Fluxo
+        //Flow
         getPetStatusRequest = new GetPetStatusRequest(petStatus+status);
         Response response = getPetStatusRequest.executeRequest();
 
-        //Asserções
-        Assert.assertEquals(response.statusCode(), statusCodeEsperado);
-        Assert.assertTrue(response.body().jsonPath().getString("status").contains(status),"Validação Status"+status);
+        //Assertions
+        Assert.assertEquals(response.statusCode(), expectedStatusCode);
+        Assert.assertTrue(response.body().jsonPath().getString("status").contains(status), "Validate status: " + status);
         softAssert.assertAll();
     }
 }

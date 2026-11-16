@@ -10,38 +10,38 @@ import org.testng.asserts.SoftAssert;
 
 public class DeletePetTests extends TestBase {
     DeletePetRequest deletePetRequest;
-    PostPetTests  criarPets = new PostPetTests();
-    String idDisp;
+    PostPetTests petCreationTests = new PostPetTests();
+    String availablePetId;
 
     @Test
-    public void deletarPetInserido(){
+    public void deleteCreatedPet(){
         SoftAssert softAssert = new SoftAssert();
 
-////////Criar Pet
+////////Create a pet
 
-        // Parâmetros
-        int statusCodeEsperado = HttpStatus.SC_OK;
+        // Parameters
+        int expectedStatusCode = HttpStatus.SC_OK;
 
-        // Fluxo
-        criarPets.inserirPetStatusDisponível();
-        int responseCodeInserido = criarPets.code;
-        idDisp = criarPets.id;
+        // Flow
+        petCreationTests.createAvailablePet();
+        int createResponseCode = petCreationTests.code;
+        availablePetId = petCreationTests.id;
 
 ////////
 
-        //Parâmetros
-        int petId=Integer.parseInt(idDisp);
+        //Parameters
+        int petId = Integer.parseInt(availablePetId);
 
-        //Fluxo
+        //Flow
         deletePetRequest = new DeletePetRequest(petId);
         Response response = deletePetRequest.executeRequest();
 
-        //Asserções
-        Assert.assertEquals(responseCodeInserido, statusCodeEsperado);
-        Assert.assertEquals(response.statusCode(), statusCodeEsperado);
-        softAssert.assertEquals(response.body().jsonPath().get("code"), 200, "Validação code");
-        softAssert.assertEquals(response.body().jsonPath().get("type").toString(), "unknown", "Validação type");
-        softAssert.assertEquals(response.body().jsonPath().get("message"), Integer.toString(petId), "Validação message");
+        //Assertions
+        Assert.assertEquals(createResponseCode, expectedStatusCode);
+        Assert.assertEquals(response.statusCode(), expectedStatusCode);
+        softAssert.assertEquals(response.body().jsonPath().getInt("code"), 200, "Validate code");
+        softAssert.assertEquals(response.body().jsonPath().get("type").toString(), "unknown", "Validate type");
+        softAssert.assertEquals(response.body().jsonPath().get("message"), Integer.toString(petId), "Validate message");
         softAssert.assertAll();
     }
 }

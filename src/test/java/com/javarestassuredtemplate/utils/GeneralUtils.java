@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class GeneralUtils {
-    public static String readFileToAString(String path){
+    public static String readFileAsString(String path){
         byte[] encoded = new byte[0];
         try {
             encoded = Files.readAllBytes(Paths.get(path));

@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class GlobalParameters {
-    public static String ENVIROMENT;
+    public static String ENVIRONMENT;
     public static String URL_DEFAULT;
     public static String REPORT_NAME;
     public static String REPORT_PATH;
@@ -37,21 +37,21 @@ public class GlobalParameters {
 
         REPORT_NAME = properties.getProperty("report.name");
         REPORT_PATH = properties.getProperty("report.path");
-        ENVIROMENT = properties.getProperty("enviroment");
+        ENVIRONMENT = properties.getProperty("environment");
 
-        if(ENVIROMENT.equals("hml")){
-            DB_URL = properties.getProperty("hml.db.url");
-            DB_NAME = properties.getProperty("hml.db.name");
-            DB_USER = properties.getProperty("hml.db.user");
-            DB_PASSWORD = properties.getProperty("hml.db.password");
-            URL_DEFAULT = properties.getProperty("hml.url.default");
-            URL_TOKEN = properties.getProperty("hml.url.token");
-            TOKEN = properties.getProperty("hml.token");
-            AUTHENTICATOR_USER = properties.getProperty("hml.authenticator.user");
-            AUTHENTICATOR_PASSWORD = properties.getProperty("hml.authenticator.password");
+        if(ENVIRONMENT.equals("staging")){
+            DB_URL = properties.getProperty("staging.db.url");
+            DB_NAME = properties.getProperty("staging.db.name");
+            DB_USER = properties.getProperty("staging.db.user");
+            DB_PASSWORD = properties.getProperty("staging.db.password");
+            URL_DEFAULT = properties.getProperty("staging.url.default");
+            URL_TOKEN = properties.getProperty("staging.url.token");
+            TOKEN = properties.getProperty("staging.token");
+            AUTHENTICATOR_USER = properties.getProperty("staging.authenticator.user");
+            AUTHENTICATOR_PASSWORD = properties.getProperty("staging.authenticator.password");
         }
 
-        if(ENVIROMENT.equals("dev")){
+        if(ENVIRONMENT.equals("dev")){
             DB_URL = properties.getProperty("dev.db.url");
             DB_NAME = properties.getProperty("dev.db.name");
             DB_USER = properties.getProperty("dev.db.user");

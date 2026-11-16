@@ -4,10 +4,10 @@ import com.javarestassuredtemplate.GlobalParameters;
 import com.javarestassuredtemplate.bases.RequestRestBase;
 import io.restassured.http.Method;
 
-public class GetToken  extends RequestRestBase {
-    public GetToken(String usuario, String senha){
+public class GetTokenRequest extends RequestRestBase {
+    public GetTokenRequest(String username, String password){
         url= GlobalParameters.URL_TOKEN;
-        requestService = "token/"+usuario+"/"+senha;
+        requestService = "token/"+username+"/"+password;
         method = Method.GET;
     }
 }

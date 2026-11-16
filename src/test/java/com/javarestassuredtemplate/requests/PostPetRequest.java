@@ -18,7 +18,7 @@ public class PostPetRequest extends RequestRestBase {
                             String tagId,
                             String tagName,
                             String status){
-        jsonBody = GeneralUtils.readFileToAString("src/test/java/com/javarestassuredtemplate/jsons/PostPetJson.json");
+        jsonBody = GeneralUtils.readFileAsString("src/test/java/com/javarestassuredtemplate/jsons/PostPetJson.json");
 
         jsonBody = jsonBody.replace("$id", id)
                            .replace("$categoryId", categoryId)

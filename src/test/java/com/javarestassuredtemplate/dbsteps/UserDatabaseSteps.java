@@ -3,12 +3,12 @@ package com.javarestassuredtemplate.dbsteps;
 import com.javarestassuredtemplate.utils.DBUtils;
 import com.javarestassuredtemplate.utils.GeneralUtils;
 
-public class UsuariosDBSteps {
+public class UserDatabaseSteps {
     private static String queriesPath = System.getProperty("user.dir")+"/src/test/java/com/javarestassuredtemplate/queries/";
 
-    public static String retornaSenhaDoUsuario(String userName){
-        String query = GeneralUtils.readFileToAString(queriesPath + "retornaSenhaUsuarioQuery");
-        query.replace("$nome", userName);
+    public static String getUserPassword(String username){
+        String query = GeneralUtils.readFileAsString(queriesPath + "getUserPasswordQuery.sql");
+        query = query.replace("$username", username);
 
         return DBUtils.getQueryResult(query).get(0);
     }

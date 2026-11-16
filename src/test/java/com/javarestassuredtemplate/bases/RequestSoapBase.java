@@ -30,7 +30,7 @@ public abstract class RequestSoapBase {
         enableLoggingOfRequestAndResponseIfValidationFails();
         headers.put("Content-Type", "text/xml;charset=UTF-8");
         headers.put("SOAPAction", "");
-        //headers.put("token", "Bearer "+GlobalParameters.TOKEN); //<== EXEMPLO DE COMO ADICIONAR TOKEN DEFAULT CASO NECESSÁRIO
+        //headers.put("token", "Bearer "+GlobalParameters.TOKEN); //<== Example of adding a default token if needed
     }
 
     public Response executeRequest() {
